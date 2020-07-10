@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10-整数相加计算</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <span>数值a: </span>
+            <span><input type="text" v-model="a"></span>
+        </div>
+        <div>
+            <span>数值b: </span>
+            <span><input type="text" v-model="b"></span>
+        </div>
+        <div>
+            <button v-on:click='handle'>相加</button>
+        </div>
+        <div>
+            <span>和为: </span>
+            <span v-text="sum"></span>
+        </div>
+    </div>
+    <script src="../JS/vue.js"></script>
+    <script>
+        /* 
+        1. 通过v-model指令实现数值a、数值b的绑定
+        2. 给计算按钮按钮绑定事件， 实现计算逻辑
+        3. 将计算结果填充到相应的位置
+        */
+        var app = new Vue({
+            el: "#app",
+            data: {
+                a: '',
+                b: '',
+                sum: ''
+            },
+            methods: {
+                handle: function () {
+                    console.log(this.a, this.b);
+                    this.sum = parseInt(this.a) + parseInt(this.b);
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

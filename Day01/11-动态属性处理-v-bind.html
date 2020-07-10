@@ -4,34 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>11-动态属性处理-v-bind</title>
 </head>
 
 <body>
     <div id="app">
         <!--  -->
-        <a v-bind:href="url">Google</a>
+        <a v-bind:href="url">{{info}}</a>
+        <!-- v-bind可简写，即如下 -->
+        <a :href="url">{{info}}</a>
         <button v-on:click="handle">Switch to Duckduckgo</button>
     </div id>
+
     <!-- 引入vue.min.js文件 -->
     <!-- <script src="../JS/vue.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
     <!-- js代码 -->
     <script>
-        // 创建一个vue实例对象
+        /* 
+        这里是通过v-bind指令将url绑定到a链接的href属性上
+        */
+        // 创建一个Vue实例对象
         let vm = new Vue({
             // 
             el: "#app",
             // 
             data: {
-                url: "https://www.google.com"
+                url: "https://www.google.com",
+                info: 'Google'
             },
             // 
             methods: {
                 handle: function (event) {
                     console.log(this);
                     this.url = "https://www.duckduckgo.com";
-                    // this.childeren[1].innerHTML = "Duckduckgo";
+                    this.info = 'DuckDuckgo';
                 },
             }
         });

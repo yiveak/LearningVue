@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13-样式绑定-对象语法</title>
+    <style>
+        .active {
+            width: 100px;
+            height: 100px;
+            border: 2px dotted orange;
+        }
+
+        .error {
+            background-color: #4f4f;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 1. 对象语法、数组语法混用 -->
+        <!-- <div v-bind:class="[activeClass, {error: isError}]"></div> -->
+
+        <!-- 2.一个数组类 -->
+        <!-- <div v-bind:class="arrClasses"></div> -->
+
+        <!-- 3. 一个对象类  -->
+        <div v-bind:class="objClasses"></div>
+
+        <button v-on:click='handle'>消失</button>
+
+    </div>
+    <script src="../JS/vue.js"></script>
+    <script>
+        /* 
+        1. class样式绑定
+        a. 对象语法：<div v-bind:class="{active: isActive}"></div>
+
+        b. 数组语法：<div v-bind:class="[activeClass, errorClass]"></div>
+        */
+        var app = new Vue({
+            el: "#app",
+            data: {
+                // 1.
+                // activeClass: 'active',
+                // isError: true,
+
+                // 2.
+                // arrClasses:['active', 'error'],
+
+                // 3.
+                objClasses: {
+                    active: true,
+                    error: true
+                }
+            },
+            methods: {
+                handle: function () {
+                    // 1.
+                   /*  // 去掉背景色
+                    this.isError = !this.isError;
+                    // 整个图形消失
+                    this.activeClass = ''; */
+
+                    // 2.
+                    // 去掉背景色
+                    /* console.log(this.arrClasses[1]);
+                    // this.arrClasses[1] = ''; 只是让类名为空，未起到作用
+                    this.arrClasses.splice(1); */
+
+
+                    // 3. 去掉背景色
+                    this.objClasses.error = !this.objClasses.error;
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

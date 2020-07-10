@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>14-分支循环结构</title>
+    <style>
+        li {
+            list-style: none;
+        }
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class=""></div>
+        <span>水果中英文列表</span>
+        <ul>
+            <li v-for="item in fruits">
+                <span v-cloak>{{item.en}}</span>
+                <span> --- </span>
+                <span v-cloak>{{item.cn}}</span>
+            </li>
+        </ul>
+    </div>
+
+    <script src="../JS/vue.js"></script>
+    <script>
+        /* 
+        A. 分支：
+        1. v-if
+        2. v-if-else
+        3. v-else-if
+        4. v-show
+        */
+        /* 
+        B. 循环：v-for
+        */
+        var app = new Vue({
+            el: "#app",
+            data: {
+                fruits: [
+                    {
+                        en: 'Apple',
+                        cn: '苹果'
+                    },
+                    {
+                        en: 'Orange',
+                        cn: '橘子'
+                    },
+                    {
+                        en: 'Pear',
+                        cn: '梨'
+                    },
+                    {
+                        en: 'Pineapple',
+                        cn: '菠萝'
+                    }
+                ]
+            },
+            methods: {
+
+            },
+        });
+    </script>
+</body>
+
+</html>

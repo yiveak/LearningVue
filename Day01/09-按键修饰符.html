@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09-按键修饰符</title>
+</head>
+
+<body>
+    <div id="app">
+        <form action="">
+            <!-- 通过v-model进行双向数据绑定 -->
+            <div>
+                <!-- 按delete键直接清空输入 -->
+                用户名：<input type="text" v-model="uname" v-on:keyup.delete="clearContent">
+            </div>
+            <div>
+                <!-- 输入完密码后按enter键直接提交 -->
+                密码：<input type="password" v-model="pwd" v-on:keyup.enter="handleSubmit">
+            </div>
+            <div>
+                <input type="button" value="submit" v-on:click="handleSubmit">
+            </div>
+        </form>
+    </div>
+
+    <script src="../JS/vue.js"></script>
+    <script>
+        /* 
+        按键修饰符：
+        1. .enter
+        2. .delete
+        */
+        var app = new Vue({
+            el: "#app",
+            data: {
+                uname: "",
+                pwd: ""
+            },
+            methods: {
+                handleSubmit: function () {
+                    console.log(this.uname, this.pwd);
+                },
+                clearContent: function () {
+                    this.uname = '';
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

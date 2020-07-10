@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12-v-model指令的本质</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <span v-cloak>{{msg}}</span>
+        <div>
+            <input type="text" v-bind:value='msg' v-on:input='handle'>
+            <!-- or -->
+            <input type="text" v-bind:value='msg' v-on:input='msg=$event.target.value'>
+            <!-- or -->
+            <input type="text" v-model="msg">
+        </div>
+    </div>
+
+    <script src="../JS/vue.js"></script>
+    <script>
+        /* 
+        v-model: v-bind + v-on
+        */
+        var app = new Vue({
+            el: "#app",
+            data: {
+                msg: 'hello'
+            },
+            methods: {
+                handle: function () {
+                    this.msg = event.target.value;
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

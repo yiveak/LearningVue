@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15-案例练习-tab选项卡</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            
+        }
+
+        
+        [v-cloak]{
+            display: none;
+        }
+
+        .clearfix:before,
+        .clearfix:after {
+            content: '';
+            display: block;
+        }
+        .clearfix:after {
+            clear: both;
+        }
+        .clearfix {
+            *zoom: 1;
+        }
+        
+        li {
+            list-style: none;
+        }
+
+        img {
+            vertical-align: middle;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tab {
+            width: 500px;
+        }
+
+        .tabHeader {
+            margin-top: 100px;
+            /* border: 1px solid #a6a6a6; */
+        }
+
+        .tabHeader li {
+            float: left;
+            width: 70px;
+            height: 35px;
+            margin: 0 1px;
+            padding: 0 25px;
+            line-height: 35px;
+            font-size: 14px;
+            text-align: center;
+            border-radius: 2px;
+        }
+
+        .tabContent {
+            display: none;
+            float: left;
+            width: 500px;
+            /* height: 300px; */
+            margin-top: 1px;
+        }
+
+        .tabContent img {
+            width: 100%;
+        }
+        .tabHeader li.active {
+            background-color: #e0e0e0;
+            
+        }
+        .tabHeader li:hover{
+            box-shadow: 0 15px 30px rgba(105, 84, 84, 0.5);
+        }
+        .tabContent.current {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Tower of God 人物图片切换 -->
+    <div id="app">
+        <div class="tab clearfix" >
+            <ul class="tabHeader clearfix">
+                <li v-cloak v-on:click='change(index)':class='currentIndex==index?"active":""' :key='item.id' v-for="(item, index) in personList">{{item.name}}</li>
+            </ul>
+            <div class = "tabContent" :class="currentIndex==index?'current':''" :key='item.id' v-for="(item, index) in personList">
+                <img v-bind:src="item.path" alt="">
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../JS/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                currentIndex: 0, // 选中的当前选项卡默认为0
+                personList: [
+                    {
+                        id: 1,
+                        name: 'Bam25',
+                        // 图片路径
+                        path: 'img/TowerOfGodBam25.png'
+                    },
+                    {
+                        id: 2,
+                        name: 'Yuri',
+                        path: 'img/TowerOfGodYuri.png'
+                    },
+                    {
+                        id: 3,
+                        name: 'Khun',
+                        path: 'img/TowerOfGodKhun.png'
+                    }
+                ]
+
+            },
+            methods: {
+                change: function(index){
+                    this.currentIndex = index;
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

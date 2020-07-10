@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>14-v-for-遍历对象</title>
+</head>
+
+<body>
+    <div id="app">
+        <span>打印用户信息：</span>
+        <div v-if="value > 20" v-for="(value, key, index) in obj">
+            {{key + ': ' + value}}
+        </div>
+    </div>
+
+    <script src="../JS/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                obj: {
+                    username: "John",
+                    age: 25,
+                    sex: 'Male',
+                    favHobby: 'Anime'
+                }
+            },
+            methods: {
+
+            },
+        });
+    </script>
+</body>
+
+</html>

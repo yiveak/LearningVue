@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13-样式绑定-对象语法</title>
+    <style>
+        .active {
+            width: 100px;
+            height: 100px;
+            border: 2px dotted orange;
+        }
+
+        .error {
+            background-color: #4f4f;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="active"></div>
+        <!-- 样式绑定：对象语法 -->
+        <span>样式绑定：对象语法</span>
+        <div v-bind:class="[activeClass, errorClass]">测试：数组语法</div>
+
+
+        <button v-on:click='handle'>背景色消失</button>
+
+    </div>
+    <script src="../JS/vue.js"></script>
+    <script>
+        /* 
+        1. class样式绑定
+        a. 对象语法：<div v-bind:class="{active: isActive}"></div>
+
+        b. 数组语法：<div v-bind:class="[activeClass, errorClass]"></div>
+        */
+        var app = new Vue({
+            el: "#app",
+            data: {
+                activeClass: 'active',
+                errorClass: 'error'
+            },
+            methods: {
+                handle: function () {
+                    this.errorClass = '';
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

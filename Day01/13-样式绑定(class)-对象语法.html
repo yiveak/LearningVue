@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13-样式绑定-对象语法</title>
+    <style>
+        .active {
+            width: 100px;
+            height: 100px;
+            border: 2px dotted orange;
+        }
+        .error{
+            background-color: #4f4f;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="active"></div>
+        <!-- 样式绑定：对象语法 -->
+        <span>样式绑定：对象语法</span>
+        <div v-bind:class="{active: isActive}">测试：对象语法</div>
+        <span>对象语法，2个键值对</span>
+        <div v-bind:class="{active: isActive, error: isError}">测试：对象语法2个键值对</div>
+
+        <button v-on:click='handle'>消失</button>
+
+    </div>
+    <script src="../JS/vue.js"></script>
+    <script>
+        /* 
+        1. class样式绑定
+        a. 对象语法：<div v-bind:class="{active: isActive}"></div>
+
+        b. 数组语法：<div v-bind:class="[activeClass, errorClass]"></div>
+        */
+        var app = new Vue({
+            el: "#app",
+            data: {
+                isActive: true,
+                isError: true
+            },
+            methods: {
+                handle: function(){
+                    // this.isActive = false;
+                    // much better 取反可以让isActive的值在true or false之间来回切换
+                    this.isActive = !this.isActive;
+                    this.isError = !this.isError;
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>
