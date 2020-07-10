@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06-v-once</title>
+</head>
+
+<body>
+    <div id="app">
+        <span v-once>{{msg}}</span>
+    </div>
+    <script src="../JS/vue.min.js"></script>
+    <script>
+        /* 
+        v-once: 不需要表达式
+        只渲染元素和组件一次。随后的重新渲染，元素/组件及其所有的子节点将被视为静态内容并跳过。这可以用于优化更新性能。
+         */
+        var app = new Vue({
+            el: "#app",
+            data: {
+                // 在控制台输入app.msg=123，并不改变网页页面里内容显示的内容。
+                msg: "nothing"
+            }
+        });
+    </script>
+</body>
+
+</html>

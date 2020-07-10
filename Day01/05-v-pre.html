@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05-v-pre</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 因为跳过编译过程，所以直接显示Mustache 标签 -->
+        <span v-pre>{{msg}}</span>
+        <span v-pre>{{ this will not be compiled }}</span>
+    </div>
+    <script src="../JS/vue.min.js"></script>
+    <script>
+        /* 
+        v-pre
+        0. 不需要表达式，直接在所需要的地方添加v-pre
+        1. 显示原始信息，跳过编译过程(分析编译过程)
+        2. 跳过这个元素和它的子元素的编译过程。可以用来显示原始 Mustache 标签。跳过大量没有指令的节点会加快编译。
+         */
+        var app = new Vue({
+            el: "#app",
+            data: {
+                msg: "nothing"
+            }
+        });
+    </script>
+</body>
+
+</html>

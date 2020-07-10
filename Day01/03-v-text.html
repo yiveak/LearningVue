@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-v-text</title>
+</head>
+
+<body>
+    <div id="app">
+        <span v-text="msg"></span>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        /* 
+        v-text: 考虑用户体验，通常使用这个。如果使用文本插值，即{{ Mustache }}这个形式，那么需要v-cloak指令。
+        1. 预期：string 即填充的是纯文本
+        2. 更新元素的 textContent。如果要更新部分的 textContent，需要使用 {{ Mustache }} 插值。
+         */
+        var app = new Vue({
+            el: "#app",
+            data: {
+                msg: "Do you want to build snowman?"
+            }
+        });
+    </script>
+</body>
+
+</html>

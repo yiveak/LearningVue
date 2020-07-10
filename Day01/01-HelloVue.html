@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01-HelloVue</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 文本插值 插值表达式-->
+        <!-- 将数据填充到HTML标签中 -->
+        {{msg}}
+        <!-- 文本插值也基本的计算操作 -->
+        {{1+2}}
+        {{"hello"+" world..."}}
+    </div>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // Vue.js 的核心是一个允许采用简洁的 **模板语法** 来 **声明式地** **将数据渲染进 DOM 的系统**
+        // 一个 Vue 应用会将其挂载到一个 DOM 元素上 (对于这个例子是 #app) 然后对其进行完全控制
+        var app = new Vue({
+            // 键值对形式，逗号分隔，最后一个键值对不要逗号。
+            // el: 元素的挂载位置，值可以是css选择器、DOM元素
+            el: "#app",
+            // data: 数据模型，值是一个对象
+            data: {
+                msg: "Hello, Vue!"
+            }
+        });
+    </script>
+</body>
+
+</html>

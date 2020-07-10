@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02-v-cloak</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 
+            这个指令保持在元素上直到关联实例结束编译。
+            和 CSS 规则如 [v-cloak] { display: none } 一起用时，可以隐藏未编译的 Mustache 标签直到实例准备完毕。
+        -->
+        <div v-cloak>{{msg}}</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        /* 
+        v-cloak的用法：
+        1、在样式表中
+        [v-cloak]: {
+            display: none;
+        }
+        2、在插值表达式所在的标签中添加v-cloak指令
+         */
+        var app = new Vue({
+            el: "#app",
+            data: {
+                msg: "Hello Vue"
+            }
+        });
+    </script>
+</body>
+
+</html>

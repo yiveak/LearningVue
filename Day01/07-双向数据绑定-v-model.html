@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div><span>{{msg}}</span></div>
+        <!-- v-model="data中的值" -->
+        <div><input type="text" v-model="msg"></div>
+    </div>
+    <script src="../JS/vue.js"></script>
+    <script>
+        /* 
+        1. 什么是双向数据绑定？一个数据的变化导致另一个内容也发生相应的改变。主要用于表单输入域中。
+        2. 双向数据绑定分析: v-model
+        3. MVVM设计思想：
+        a. M: model
+        b. V: view
+        c. VM: View-Model
+         */
+        var app = new Vue({
+            el: "#app",
+            data: {
+                msg: "Hello Vue"
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <span v-cloak>{{num}}</span>
+        <button v-on:click="num++">click</button>
+        <!-- 简写 -->
+        <button @click="num++">click</button>
+        <!-- 事件函数的调用方式1：直接写函数名 -->
+        <button @click="handle">click</button>
+        <!-- 事件函数的调用方式2：调用函数 -->
+        <button @click="handle()">click</button>
+
+        <!-- 3. 事件函数的参数传递 -->
+        <div>
+            <span v-cloak>{{msg}}</span>
+            <button @click="sayHi('Hello', $event)">SayHi</button>
+        </div>
+
+        <!-- 4. 事件修饰符 -->
+        <!-- a. 阻止冒泡 -->
+        <div v-on:click.stop="handle">
+            <button @click="handle2">阻止冒泡</button>
+            <!-- or -->
+            <button v-on:click.stop="handle2">阻止冒泡</button>
+        </div>
+
+        <!-- b. 阻止默认行为 -->
+        <div>
+            <a href="https://www.google.com" v-on:click="handle3">Google</a>
+            <!-- or -->
+            <a href="https://www.google.com" v-on:click.self.prevent>Google</a>
+        </div>
+    </div>
+    <script src="../JS/vue.js"></script>
+    <script>
+        /* 
+        1. Vue如何处理事件？ 事件监听：v-on指令
+        2. 事件函数的调用方式
+        3. 事件函数的参数传递
+        a. 普通参数
+        b. 事件对象
+        4. 事件修饰符
+        a. .stop阻止冒泡
+        b. .prevent阻止默认行为
+         */
+        var app = new Vue({
+            el: "#app",
+            data: {
+                // not num = 0
+                num: 0,
+                msg: '',
+            },
+            methods: {
+                handle: function () {
+                    // not num++
+                    this.num++;
+                    console.log(this); // Vue
+                    console.log(this === app); // Vue实例化的对象
+                },
+
+                // 3. 事件函数的参数传递：普通参数、事件对象
+                sayHi: function (str, event) {
+                    this.msg = str;
+                    console.log(str);
+                    console.log(event.target.innerHTML);
+                },
+
+                // 4. 事件修饰符
+                // 阻止冒泡
+                handle2: function (event) {
+                    event.stopPropagation();
+
+                },
+                // 阻止默认行为，比如a链接的跳转
+                handle3: function (event) {
+                    event.preventDefault();
+
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

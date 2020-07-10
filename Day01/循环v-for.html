@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <ol>
+            <li v-for="todo in todos">
+                {{todo.text}}
+            </li>
+        </ol>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // v-for 指令可以绑定数组的数据来渲染一个项目列表
+        var app = new Vue({
+            el: "#app",
+            data: {
+                // 数组形式，里面的元素是对象
+                todos: [{
+                        text: '学习 JavaScript'
+                    },
+                    {
+                        text: '学习 Vue'
+                    },
+                    {
+                        text: '学习 React'
+                    }
+                    // 在控制台里，输入 app.todos.push({ text: '新项目' })，列表最后添加了一个新项目。
+                ]
+            }
+        });
+    </script>
+</body>
+
+</html>
