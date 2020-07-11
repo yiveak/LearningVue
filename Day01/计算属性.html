@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='app'>
+        <h4 v-cloak>{{firstName + ' ' + lastName}}</h4>
+        <h4 v-cloak>{{firstName}} {{lastName}}</h4>
+        <h4 v-cloak>{{getFullName()}}</h4>
+        <h4 v-cloak>{{fullName}}</h4>
+    </div>
+    <script src='../JS/vue.js'></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                firstName: 'John',
+                lastName: 'English'
+            },
+            methods: {
+                getFullName: function () {
+                    return this.firstName + ' ' + this.lastName;
+                }
+            },
+            // 计算属性
+            computed: {
+                fullName: function () {
+                    return this.firstName + ' ' + this.lastName;
+                }
+            }
+        });
+    </script>
+
+</html>

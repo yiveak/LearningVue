@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盒子开关灯</title>
+    <style>
+        div {
+            width: 300px;
+            height: 300px;
+            border: 1px solid #ccc;
+        }
+
+        .on {
+            background-color: #fff;
+        }
+
+        .off {
+            background-color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- v-bind:class="{类名1：boolean, 类名2：boolean...}"  boolean在Vue实例对象中的data里定义-->
+        <div class="" v-bind:class="{on: isOn, off: isOff}"></div>
+        <button v-on:click='switchBtn'>on/off</button>
+    </div>
+    <script src="../JS/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                isOn: 1,
+                isOff: 0
+            },
+            // 方法
+            methods: {
+                // 自定义函数
+                switchBtn: function () {
+                    this.isOn = !this.isOn;
+                    this.isOff = !this.isOff;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

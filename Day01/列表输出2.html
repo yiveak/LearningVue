@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表输出</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+
+        .current {
+            font-weight: 700;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <!-- 1. -->
+            <!-- <li v-cloak :key="item.id" v-for='(item, index) in countryArr'
+                v-bind:class="currentIndex==index?'current':''" v-on:click="change(index)">{{item.toUpperCase()}}</li> -->
+            <!-- 2. -->
+            <li v-cloak :key="item.id" v-for='(item, index) in countryArr' v-bind:class="getClasses(index)"
+                v-on:click="change(index)">{{item.toUpperCase()}}</li>
+        </ul>
+    </div>
+
+    <script src="../JS/vue.js"></script>
+    <!-- 1. -->
+    <!-- <script>
+        /* 
+        1. 遍历输出国家列表
+        2. 点击哪个国家，其文字显示红色
+         */
+        const countryArr = ['China', 'America', 'England', 'Japan', 'Italy'];
+        const app = new Vue({
+            el: '#app',
+            data: {
+                countryArr,
+                currentIndex: 0
+            },
+            methods: {
+                change: function (index) {
+                    this.currentIndex = index;
+                }
+            },
+        });
+    </script> -->
+
+    <!-- 2. -->
+    <script>
+        /* 
+        1. 遍历输出国家列表
+        2. 点击哪个国家，其文字显示红色
+         */
+        const countryArr = ['China', 'America', 'England', 'Japan', 'Italy'];
+        const app = new Vue({
+            el: '#app',
+            data: {
+                countryArr,
+                currentIndex: 0
+            },
+            methods: {
+                change: function (index) {
+                    this.currentIndex = index;
+                },
+                getClasses: function (index) {
+                    /* if(this.currentIndex==index){
+                        return ['current'];
+                    }
+                    return ['']; */
+                    return this.currentIndex == index ? ['current'] : [''];
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

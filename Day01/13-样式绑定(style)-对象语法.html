@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13-样式绑定(style)-对象语法</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- v-bind:style="{css属性名: css属性值}" 注意属性名是以驼峰形式-->
+        <h3 v-cloak v-bind:style="{fontSize: fSize + 'px', fontWeight: '400', color: color}">{{msg}}</h3>
+        <h3 v-cloak v-bind:style="getStyles()">{{msg}}</h3>
+    </div>
+    <script src="../JS/vue.js"></script>
+    <script>
+        let color = 'orange';
+        let fSize = 25;
+        const app = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello',
+                fSize,
+                color
+            },
+            methods: {
+                getStyles: function () {
+                    return {
+                        fontSize: this.fSize + 'px',
+                        fontWeight: '400',
+                        color: this.color
+                    };
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

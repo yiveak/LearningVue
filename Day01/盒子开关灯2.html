@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盒子开关灯</title>
+    <style>
+        div {
+            width: 300px;
+            height: 300px;
+            border: 1px solid #ccc;
+        }
+
+        .on {
+            background-color: #fff;
+        }
+
+        .off {
+            background-color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- v-bind:class="自定义函数()" 函数后面要加圆括号-->
+        <div class="" v-bind:class="getClass()"></div>
+        <button v-on:click='switchBtn'>on/off</button>
+    </div>
+    <script src="../JS/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                isOn: 1,
+                isOff: 0
+            },
+            // 方法
+            methods: {
+                // 自定义函数
+                switchBtn: function () {
+                    this.isOn = !this.isOn;
+                    this.isOff = !this.isOff;
+                },
+                getClass: function(){
+                    return {on: this.isOn, off: this.isOff}
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

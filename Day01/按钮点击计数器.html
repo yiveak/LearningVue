@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>按钮点击计数器</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- {{}} Mustache语法 -->
+        <h3 v-cloak>当前计数：{{count}}</h3>
+        <!-- v-on指令，监听事件 -->
+        <button v-on:click='add'>add</button>
+        <!-- v-on指令语法糖，@ -->
+        <button @click='del'>del</button>
+        <button @click='reset'>reset</button>
+    </div>
+    <script src="../JS/vue.js"></script>
+    <script>
+        // Vue实例化一个对象
+        const app = new Vue({
+            // 挂载元素
+            el: "#app",
+            // or
+            // el: document.querySelector('#app'),
+
+            data: {
+                count: 0
+            },
+            methods: {
+                // 自增1
+                add: function () {
+                    this.count++;
+                },
+                // 自减1
+                del: function () {
+                    this.count == 0 ? this.count = 0 : this.count--;
+                },
+                // 重置为0
+                reset: function () {
+                    this.count = 0;
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

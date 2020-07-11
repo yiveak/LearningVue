@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表输出</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <!-- v-for遍历 -->
+            <li v-cloak v-for='(item, index) in arr'>{{arr[index]}}</li>
+            <br>
+            <li v-cloak v-for='(item) in arr' >{{item.toUpperCase()}}</li>
+        </ul>
+    </div>
+
+    <script src="../JS/vue.js"></script>
+    <script>
+        const arr = ['China', 'America', 'England', 'Japan', 'Italy'];
+        const app = new Vue({
+            el: '#app',
+            data: {
+                arr
+            },
+            methods: {
+
+            },
+        });
+    </script>
+</body>
+
+</html>
