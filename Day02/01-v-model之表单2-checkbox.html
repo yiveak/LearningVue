@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-model之表单2-checkbox</title>
+</head>
+
+<body>
+    <div id='app'>
+        <!-- checkbox -->
+
+        <!-- 例1. 同意协议 作为单选框-->
+        <label for="licence">
+            <input type="checkbox" id="licence" v-model="isAgree"> 同意协议
+        </label>
+        <div>isAgree的值：{{isAgree}}</div>
+        <!-- 不同意协议，“下一步”btn为不可单击模式 -->
+        <!-- 通过isAgree的值来判断disabled -->
+        <!-- 为什么是取反isAgree？因为当isAgree为false时，即disabled获得的值为true，则禁用了按钮 -->
+        <button v-bind:disabled="!isAgree">下一步</button>
+
+        <br>
+        <!-- 例2. 爱好 作为多选框 -->
+        <label for="basketball">
+            <input type="checkbox" id="basketball" value="basketball" v-model="hobbies"> Basketball
+        </label>
+        <label for="football">
+            <input type="checkbox" id="football" value="football" v-model="hobbies"> Football
+        </label>
+        <label for="tennis">
+            <input type="checkbox" id="tennis" value="tennis" v-model="hobbies"> Tennis
+        </label>
+        <label for="pingpang">
+            <input type="checkbox" id="pingpang" value="pingpang" v-model="hobbies"> Pingpang
+        </label>
+        <div>You like: {{hobbies}}</div>
+
+        <!-- br -->
+        <!-- 多选框改良 不写死-->
+        <label v-for="item in favFruits" :for="item">
+            <input type="checkbox" :id="item" v-bind:value="item" v-model="fav">{{item}}
+        </label>
+        <div>Your favourite fruits: {{fav}}</div>
+    </div>
+    <script src='../JS/vue.js'></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                isAgree: false, // 单选框，对应的是boolean
+                // 注意这里hobbies初始值是空数组 多选框，对应的是数组形式
+                // 如果是 hobbies: '' 那么一勾选某个复选框，则所有的复选框同时被勾选
+                hobbies: [],
+                fav: [],
+                favFruits: ['Apple', 'Pineapple', 'Orange', 'Banana']
+            },
+            methods: {
+
+            },
+        });
+    </script>
+
+</body>
+
+</html>

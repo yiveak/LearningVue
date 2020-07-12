@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>计算属性-练习计算价格</title>
 </head>
+
 <body>
     <div id='app'>
         <span>总价：{{totalPrice}}</span>
@@ -14,28 +16,66 @@
         const app = new Vue({
             el: '#app',
             data: {
-                books: [
-                    {id:11, name: 'CSS世界', price: 35},
-                    {id:12, name: '你所不知道的JavaScript', price: 69},
-                    {id:13, name: 'CSS选择器世界', price: 42},
-                    {id:14, name: '深入理解计算机原理', price: 90},
+                books: [{
+                        id: 11,
+                        name: 'CSS世界',
+                        price: 35
+                    },
+                    {
+                        id: 12,
+                        name: '你所不知道的JavaScript',
+                        price: 69
+                    },
+                    {
+                        id: 13,
+                        name: 'CSS选择器世界',
+                        price: 42
+                    },
+                    {
+                        id: 14,
+                        name: '深入理解计算机原理',
+                        price: 90
+                    },
                 ]
             },
             methods: {
-                
+
             },
             computed: {
-                totalPrice: function(){
+                totalPrice: function () {
                     // 方式1.
-                    let result = 0;
+                    /* let result = 0;
                     for( let i = 0; i < this.books.length; i++ ){
                         result += this.books[i].price;
                     }
-                    return result;
+                    return result; */
+
                     // 方式2. reduce()
+                    // array.reduce(function(total, currentValue, currentIndex, arr), initialValue)
+
+                    /* let priceArr = this.books.map(function(item){
+                        return item.price
+                    });
+                    // console.log(priceArr);
+                    let total = priceArr.reduce(function(preVal, currentVal){
+                        return preVal + currentVal;
+                    },0) */
+
+                    // 高阶函数合成
+                    let total = this.books.map(function (item) {
+                        return item.price;
+                    }).reduce(function (preVal, currentVal) {
+                        return preVal + currentVal;
+                    }, 0);
+
+                    // 高阶函数组合 箭头函数
+                    /* let total = this.books.map(item => item.price).reduce((preVal, currentVal) => preVal +
+                        currentVal) */
+                    return total;
                 }
             },
         });
     </script>
 </body>
+
 </html>

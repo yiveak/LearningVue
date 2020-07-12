@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类丐版购物车</title>
+</head>
+<body>
+    <div id='app'>
+        <table>
+            <thead>
+                <tr>
+                    <td></td>
+                    <td>书籍名称</td>
+                    <td>出版日期</td>
+                    <td>价格</td>
+                    <td>数量</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr :key="id" v-for="(item, index) in books">
+                    <td>{{item.id}}</td>
+                    <td>{{item.title}}</td>
+                    <td>{{item.publishDate}}</td>
+                    <td>{{item.price}}</td>
+                    <td>
+                        <button @click="increment"> - </button>
+
+                        <button @click="decrement"> + </button>
+                    </td>
+                    <td>
+                        <button>移除</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table style="border:">
+    </div>
+    <script src='../JS/vue.js'></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                books: [
+                    {
+                        id: 1,
+                        title: '编程珠玑',
+                        publishDate: '2006-12',
+                        price: 80
+                    },
+                    {
+                        id: 2,
+                        title: 'HTTP抓包实战',
+                        publishDate: '2006-12',
+                        price: 29.5
+                    },
+                    {
+                        id: 3,
+                        title: 'HTTP权威指南',
+                        publishDate: '2006-12',
+                        price: 80
+                    },
+                    {
+                        id: 4,
+                        title: '精通CSS 高级Web标准解决方案 第3版',
+                        publishDate: '2006-12',
+                        price: 49.5
+                    },
+                    {
+                        id: 5,
+                        title: '深入理解计算机原理',
+                        publishDate: '2006-12',
+                        price: 99
+                    },
+                    {
+                        id: 6,
+                        title: 'CSS选择器世界',
+                        publishDate: '2006-12',
+                        price: 37.5
+                    },
+                ]
+            },
+            methods: {
+                
+            },
+        });
+    </script>
+</body>
+</html>

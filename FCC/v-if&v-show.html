@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-if&v-show</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 分数等级判断 -->
+        <span v-if="score>=90">A</span>
+        <span v-else-if="score>=80">B</span>
+        <span v-else-if="score>=70">C</span>
+        <span v-else-if="score>=60">D</span>
+        <span v-else>E</span>
+        <br>
+        <!-- 渲染到DOM中，不过是display: none; -->
+        <div v-show="flag==1">Yes, v-show.</div>
+    </div>
+    <script src="../JS/vue.js"></script>
+    <script>
+        let score = prompt("Please enter score");
+        // console.log(typeof score); // string
+        score = Number(score);
+        const app = new Vue({
+            el: '#app',
+            data: {
+                score,
+                // flag: 1
+                flag: 0
+            },
+            methods: {
+
+            },
+        });
+    </script>
+</body>
+
+</html>

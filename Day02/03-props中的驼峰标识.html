@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-props中的驼峰标识</title>
+</head>
+
+<body>
+    <div id='app'>
+        <cpn :c-agent-info="agentInfo"></cpn>
+    </div>
+
+    <template id='cpn'>
+        <div>
+            憨豆特工：{{cAgentInfo}}
+        </div>
+    </template>
+    <script src='../JS/vue.js'></script>
+    <script>
+        const cpn = {
+            template: '#cpn',
+            props: {
+                cAgentInfo: {
+                    type: Object,
+                    default () {
+                        return {}
+                    }
+                }
+            },
+            data() {
+                return {
+
+                }
+            },
+
+        }
+        const app = new Vue({
+            el: '#app',
+            data: {
+                agentInfo: {
+                    id: '007',
+                    fistName: 'John',
+                    lastName: 'English',
+                    age: 25,
+                    sex: 'Male',
+                }
+            },
+            components: {
+                cpn
+            }
+        });
+    </script>
+</body>
+
+</html>

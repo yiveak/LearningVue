@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-model之表单3-select</title>
+</head>
+
+<body>
+    <div id='app'>
+        <!-- select -->
+
+        <!-- 例1. 作为单选 -->
+        <!-- v-model应该写在select里面 -->
+        <select name="" id="" v-model="fruit">
+            <option value="apple">Apple</option>
+            <option value="pineapple">Pineapple</option>
+            <option value="pear">Pear</option>
+            <option value="banana">Banana</option>
+        </select>
+        <div>当前选的水果是：{{fruit}}</div>
+
+        <br>
+        <!-- 例2. 选择多个 作为多选 -->
+        <!-- 加上 multiple   shift+单击：多选-->
+        <select name="" id="country" v-model="countries" multiple>
+            <option value="china">China</option>
+            <option value="italy">Italy</option>
+            <option value="japan">Japan</option>
+            <option value="england">England</option>
+        </select>
+        <div>当前所选的国家有：{{countries}}</div>
+    </div>
+    <script src='../JS/vue.js'></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                fruit: 'apple',
+                countries: []
+            },
+            methods: {
+
+            },
+        });
+    </script>
+</body>
+
+</html>

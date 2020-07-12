@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件模板的分离</title>
+</head>
+
+<body>
+    <div id='app'>
+        <cpn1></cpn1>
+        <cpn2></cpn2>
+    </div>
+
+    <!-- 组件模板分离方法1：通过<script>标签，类型必须是text/x-template -->
+    <!-- 默认也显示。。 -->
+    <scrip type="text/x-template" id="cpn1">
+        <div>hello</div>
+    </scrip>
+
+    <!-- 组件模板分离方法2：通过<template>标签 -->
+    <template id="cpn2">
+        <div>
+            John English
+        </div>
+    </template>
+
+    <script src='../JS/vue.js'></script>
+    <script>
+        Vue.component('cpn1', {
+            // 通过id名获取模板文本
+            template: '#cpn1'
+        })
+
+        Vue.component('cpn2', {
+            template: '#cpn2'
+        })
+
+        const app = new Vue({
+            el: '#app',
+
+        });
+    </script>
+</body>
+
+</html>

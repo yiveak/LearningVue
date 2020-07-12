@@ -18,7 +18,7 @@
 	
 	"app test": {
 		"scope": "javascript,typescript,vue,html",
-		"prefix": "appvue",
+		"prefix": "appinit",
 		"body": [
 			"<div id='app'>",
 			"\t",

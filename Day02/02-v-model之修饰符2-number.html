@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-model之修饰符2-number</title>
+</head>
+
+<body>
+    <div id='app'>
+        <!-- 如果想自动将用户的输入值转为数值类型，可以给 v-model 添加 number 修饰符 -->
+        <!-- 如果这个值无法被 parseFloat() 解析，则会返回原始的值。 -->
+        <form action="">
+            <label for="age"> Age:
+                <input type="text" id="age" v-model.number="age">
+                <div>{{age}} 输入值的属性：{{typeof age}}</div>  <!--先number(因为初始值为0)，而后一直都是string -->
+                <!-- 添加了number修饰符之后 -->
+                <input type="number" id="age" v-model.number="num">
+                <div>{{num}} 输入值的属性：{{typeof num}} <!-- always number -->
+            </label>
+        </form>
+    </div>
+    <script src='../JS/vue.js'></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                age: 0,
+                num: 0
+            },
+            methods: {
+
+            },
+        });
+    </script>
+</body>
+
+</html>

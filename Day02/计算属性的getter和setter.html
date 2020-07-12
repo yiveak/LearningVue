@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性的getter和setter</title>
+</head>
+
+<body>
+    <div id='app'>
+        <span>{{fullName}}</span>
+    </div>
+    <script src='../JS/vue.js'></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                firstName: 'John',
+                lastName: 'English'
+            },
+            methods: {
+
+            },
+            computed: {
+                /* fullName: {
+                    // 设置 --- 计算属性里set()99%很少用 某种意义上是默认只读属性
+                    set: function (newVal) {
+                        // console.log(this.fullName);
+                        let name = newVal.split(' ');
+                        this.firstName = name[0];
+                        this.lastName = name[1];
+                    },
+                    // 获取 --- 经常用
+                    get: function () {
+                        return this.firstName + ' ' + this.lastName;
+                    }
+                } */
+                // line-26 to lin-38简写成，即将get省略，计算属性相对methods性能更佳 因为缓存
+                fullName: function () {
+                    return this.firstName + ' ' + this.lastName;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

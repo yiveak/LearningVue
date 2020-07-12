@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='app'>
+        <!-- 如果要自动过滤用户输入的首尾空白字符，可以给 v-model 添加 trim 修饰符 -->
+        <input type="text" v-model.trim="msg">
+        <br>
+        <input type="text" v-model.trim="stuff">
+    </div>
+    <script src='../JS/vue.js'></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                msg: 'hello',
+                stuff: 'apple orange'
+            },
+            methods: {
+
+            },
+        });
+    </script>
+</body>
+
+</html>

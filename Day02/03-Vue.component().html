@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.component()</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 3. 在Vue实例的作用范围内使用组件 -->
+        <globalcpn></globalcpn>
+        <!-- 局部组件 -->
+        <localcpn></localcpn>
+    </div>
+    <script src="../JS/vue.js"></script>
+    <script>
+        // 1. 创建组件构造器对象
+        const cpn = Vue.extend({
+            // template(模板) 属性
+            template: `
+                <div>
+                    <span>hello</span>
+                </div>
+            `
+        });
+
+        // 2. 注册组件
+        // 这种方式创建的是全局组件
+        // 组件名不可驼峰式
+        Vue.component('globalcpn', cpn)
+
+        const app = new Vue({
+            el: '#app',
+            
+            // 局部组件
+            components: {
+                localcpn: cpn
+            }
+        });
+    </script>
+</body>
+
+</html>

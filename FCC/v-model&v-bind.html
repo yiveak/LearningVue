@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-model&v-bind</title>
+    <style>
+        .red {
+            border: 2px solid red;
+        }
+        .green{
+            border: 2px solid lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        Sign up
+        <br>
+        <!-- {{email}}
+        <br> -->
+        <input type="text" v-model="email" v-bind:class="[email.length < 3 ? 'red' : 'green']">
+        <br>
+        <button v-on:click="" v-bind:disabled="email.length<3">Submit</button>
+    </div>
+
+    <script src="../JS/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                email: ''
+            },
+            methods: {
+                
+            },
+        });
+    </script>
+</body>
+</html>

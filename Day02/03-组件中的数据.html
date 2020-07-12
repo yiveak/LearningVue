@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件中的数据</title>
+</head>
+<body>
+    <div id='app'>
+        <cpn></cpn>
+    </div>
+
+    <template id='cpn'>
+        <div>
+            {{msg}}
+        </div>
+    </template>
+
+    <script src='../JS/vue.js'></script>
+    <script>
+        Vue.component('cpn', {
+            template: '#cpn',
+            // data()存储数据，必须return一个对象
+            data(){
+                return{
+                    msg: 'John English'
+                }
+            }
+        })
+        const app = new Vue({
+            el: '#app',
+            data: {
+                
+            },
+            methods: {
+                
+            },
+        });
+    </script>
+</body>
+</html>

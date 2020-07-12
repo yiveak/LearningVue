@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-父组件向子组件传递数据-props</title>
+</head>
+
+<body>
+    <div id='app'>
+        <cpn :cmovies="movies"></cpn>
+    </div>
+
+    <template id="cpn">
+        <div>
+            <span>获取到的电影数组：{{cmovies}}</span>
+            <br>
+            <span>msg: {{cmsg}}</span>
+        </div>
+    </template>
+
+    <script src='../JS/vue.js'></script>
+    <script>
+        const cpn = {
+            template: '#cpn',
+            // props方式1. 数组形式
+            // props: ['cmovies'],
+            // props方式2. 对象 可以对接收/接收的数据进行类型检查
+            props: {
+                // cmovies: Array,
+
+                // 也可以设置默认值
+                cmsg: {
+                    // 设置传入数据的类型
+                    type: String,
+                    // 默认值
+                    default: "Hello props:{ }",
+                    // 必须被传值，否则报错
+                    required: true
+                },
+
+                // 当类型是数组或者对象时，如果设置默认值，那么其默认值必须是一个函数
+                cmovies: {
+                    type: Array,
+                    // default:[], // 在2.5.X版本下不报错，但在更高版本报错
+                    dafault() {
+                        return []
+                    }
+                }
+            },
+            data() {
+                return {
+
+                }
+            },
+            methods: {
+
+            },
+
+        }
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+                movies: ['加勒比海盗', '海上钢琴师', '复仇者联盟'],
+                msg: ''
+            },
+            components: {
+                // ES6语法
+                cpn
+            }
+        });
+    </script>
+</body>
+
+</html>

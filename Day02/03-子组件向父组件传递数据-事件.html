@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-子组件向父组件传递数据-事件</title>
+</head>
+
+<body>
+    <!-- 父组件模板 -->
+    <div id='app'>
+        <!-- 通过v-on让父组件监听到子组件的自定义事件 -->
+        <cpn @item-click="cpnClick"></cpn>
+    </div>
+
+    <!-- 子组件模板 -->
+    <template id="cpn">
+        <div>
+            <button v-for="items in categroies" @click='btnClick(items)'>{{items.name}}</button>
+        </div>
+    </template>
+    <script src='../JS/vue.js'></script>
+    <script>
+        // 子组件的具体内容
+        const cpn = {
+            template: '#cpn',
+            data() {
+                return {
+                    categroies: [{
+                            id: 'a',
+                            name: '热门推荐'
+                        },
+                        {
+                            id: 'b',
+                            name: '手机数码'
+                        },
+                        {
+                            id: 'c',
+                            name: '家用家电'
+                        },
+                        {
+                            id: 'd',
+                            name: '电脑办公'
+                        }
+                    ]
+                };
+            },
+            methods: {
+                btnClick(items) {
+                    // console.log(item); // 查看被点击的btn
+                    // 将被点击的btn发送给父组件
+                    // this.$emit(事件的名称， 参数)
+                    // 不同于组件和 prop，事件名不存在任何自动化的大小写转换。而是触发的事件名需要完全匹配监听这个事件所用的名称。
+                    // 并且 v-on 事件监听器在 DOM 模板中会被自动转换为全小写 (因为 HTML 是大小写不敏感的)，所以 v-on:myEvent 将会变成 v-on:myevent——导致 myEvent 不可能被监听到。
+                    // 因此，我们推荐你始终使用 kebab-case 的事件名。
+                    this.$emit('item-click', items);
+                }
+            },
+
+        }
+
+        // 父组件
+        const app = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            // 子组件
+            components: {
+                cpn
+            },
+            methods: {
+                cpnClick: function (items) {
+                    console.log('cpnClick', items);
+                }
+            }
+        });
+    </script>`
+</body>
+
+</html>

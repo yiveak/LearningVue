@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-model之表单</title>
+</head>
+
+<body>
+    <!-- v-model 之 <input type="radio" /> -->
+    <div id='app'>
+        <span>Sex: </span>
+        <!-- label包裹整个input -->
+        <label for="male">
+            <!-- 单选框 -->
+            <!-- 将以前的name="sex" 换成 v-model="sex" -->
+            <!-- 同时，别忘记value="" 不然error-->
+            <input type="radio" id="male" v-model="sex" value="Male"> Male
+        </label>
+        
+        <label for="female">
+            <input type="radio" id="female" v-model="sex" value="Female"> Female
+        </label>
+    </div>
+    <script src='../JS/vue.js'></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                sex: ''
+            },
+            methods: {
+
+            },
+        });
+    </script>
+</body>
+
+</html>
