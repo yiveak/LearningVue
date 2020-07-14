@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-子组件访问父组件-$parent</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <cpn></cpn>
+    </div>
+    <template id="cpn">
+        <div>
+            <button @click="btnEvent">子组件调用父组件的方法showMsg</button>
+        </div>
+    </template>
+    <script src="../JS/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                x: 100
+            },
+            methods: {
+                showMsg() {
+                    alert('Hello Vue')
+                }
+            },
+            components: {
+                cpn: {
+                    template: '#cpn',
+                    data() {
+                        return {
+
+                        }
+                    },
+                    methods: {
+                        btnEvent() {
+                            this.$parent.showMsg();
+                        }
+                    },
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

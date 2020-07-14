@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-父组件访问子组件-$refs</title>
+</head>
+
+<body>
+    <div id="app">
+        <cpn ref="cpn"></cpn>
+        <button @click="btnClick">click to show 子组件里的data数据</button>
+    </div>
+
+    <template id="cpn">
+        <div>
+
+        </div>
+    </template>
+
+    <script src="../JS/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+                btnClick() {
+                    // 通过 $refs.索引名 访问指定子组件的里数据、方法
+                    console.log(this.$refs.cpn);
+                    alert(this.$refs.cpn.str);
+                }
+            },
+            components: {
+                cpn: {
+                    template: '#cpn',
+                    data() {
+                        return {
+                            str: '子组件的str数据内容'
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

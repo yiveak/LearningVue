@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04-插槽-slot</title>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="showMsg">click</button>
+        <hr>
+        <span>插槽无默认值的子组件：</span>
+        <cpn></cpn>
+        <hr>
+        <span>给子组件添加了button插槽：</span>
+        <cpn>
+            <button @click="btnEvent">click to show message</button>
+        </cpn>
+    </div>
+
+    <template id="cpn">
+        <div>
+            <p>子组件共同内容</p>
+            <slot><span>default slot</span></slot>
+        </div>
+    </template>
+    <script src="../JS/vue.js"></script>
+    <script>
+        /* 
+        slot: /slɒt/ 
+        让封装的组件更具有可扩展性
+        如何封装组件？ 抽取共性，不同的让slot来预留
+        */
+        const app = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+                showMsg() {
+                    alert('Hello Vue');
+                }
+            },
+            components: {
+                cpn: {
+                    template: '#cpn',
+                    methods: {
+                        btnEvent() {
+                            this.$root.showMsg();
+                        }
+                    },
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

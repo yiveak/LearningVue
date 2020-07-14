@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-父子组件通信练习</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <span v-cloak>父组件: x = {{x}}</span>
+        <br>
+        <span v-cloak>父组件: y = {{y}}</span>
+        <br>
+        <cpn :a="x" :b="y" @change-x="changeX" @change-y="changeY"></cpn>
+    </div>
+
+
+    <template id="cpn">
+        <div>
+            <span v-cloak>props: {{a}}</span>
+            <br>
+            <span v-cloak>data: {{m}}</span>
+            <br>
+            <!-- 记得绑定value，不可为空值，否则报错 -->
+            <!-- 绑定事件是通过 @ -->
+            <input type="text" :value="m" @input="changeM">
+            <br>
+
+            <span v-cloak>props: {{b}}</span>
+            <br>
+            <span v-cloak>data: {{n}}</span>
+            <br>
+            <input type="text" :value="n" @input="changeN">
+            <br>
+        </div>
+    </template>
+
+    <script src="../JS/vue.js"></script>
+    <script>
+        /* 
+        需求：
+        1. 基本的父子组件通信
+        2. 如果通过第一个数值的输入框修改组件的中第一个数值的值，那么同时第二个数值变为第一个数值的2倍
+        3. 如果通过第二个数值的输入框修改子组件中的第二个数值的值，同时第一个数值变为第二个数值的2分之一
+        */
+
+        const app = new Vue({
+            // 挂载el
+            el: '#app',
+            data: {
+                x: 3,
+                y: 4
+            },
+            methods: {
+                changeX(value) {
+                    // console.log('changeX(value)', value);
+                    this.x = value;
+                },
+                changeY(value) {
+                    this.y = value;
+                }
+            },
+
+            // local components
+            components: {
+                cpn: {
+                    template: '#cpn',
+                    // 接收父组件传值 通过对象
+                    props: {
+                        // 设置所接收的值的类型 类型检查
+                        a: Number,
+                        b: Number
+                    },
+                    // 存储接收到的数据
+                    data() {
+                        return {
+                            m: this.a,
+                            n: this.b
+                        }
+                    },
+                    methods: {
+                        changeM(event) {
+                            if (event.target.value == '') {
+                                this.m = 0;
+                            } else {
+                                this.m = parseInt(event.target.value);
+                            }
+                            this.$emit('change-x', this.m);
+                            this.n = this.m * 2;
+                            this.$emit('change-y', this.n);
+                        },
+                        changeN(event) {
+                            if (event.target.value == '') {
+                                this.n = 0;
+                            } else {
+                                this.n = parseInt(event.target.value);
+                            }
+                            this.$emit('change-y', this.n);
+                            this.m = this.n / 2;
+                            this.$emit('change-x', this.m);
+                        }
+                    },
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

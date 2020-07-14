@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-父组件访问子组件-$children</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <cpn></cpn>
+        <button @click="btnMsg">click to showMsg</button>
+    </div>
+
+    <!-- 组件 -->
+    <template id="cpn">
+        <div>
+            <span v-cloak>{{str}}</span>
+        </div>
+    </template>
+
+    <script src='../JS/vue.js'></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+                btnMsg() {
+                    console.log(this.$children);
+                    // 通过$children访问子组件里的data, methods
+                    this.$children[0].showMsg();
+                }
+            },
+            components: {
+                cpn: {
+                    template: '#cpn',
+                    data() {
+                        return {
+                            str: '我是子组件里的字符串数据'
+                        }
+                    },
+                    methods: {
+                        showMsg() {
+                            alert("我是子组件里的测试方法 showMsg( )");
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

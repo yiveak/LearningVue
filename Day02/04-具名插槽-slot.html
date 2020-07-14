@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04-具名插槽-slot</title>
+</head>
+
+<body>
+    <div id="app">
+        <cpn></cpn>
+        <!-- 既然给插槽设置了name值，自然通过插槽的name值来引用不同的插槽 -->
+        <cpn>
+            <button slot="center"> click </button>
+        </cpn>
+    </div>
+    <template id="cpn">
+        <div>
+            <!-- 具名插槽，给插槽设置个name 以区别不同的插槽 -->
+            <slot name="left"><span>left</span></slot>
+            <slot name="center"><span>center</span></slot>
+            <slot name="right"><span>right</span></slot>
+        </div>
+    </template>
+    <script src="../JS/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+
+            },
+            components: {
+                cpn: {
+                    template: '#cpn',
+                    data() {
+                        return {
+
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

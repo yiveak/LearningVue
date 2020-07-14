@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-子组件访问根组件-$root</title>
+</head>
+
+<body>
+    <div id="app">
+        <cpn></cpn>
+    </div>
+    <template id="cpn">
+        <div>
+            <cpns></cpns>
+        </div>
+    </template>
+    <template id="cpns">
+        <div>
+            <button @click='btnEvent'>子子组件调用根组件的showMsg方法</button>
+        </div>
+    </template>
+    <script src="../JS/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+                showMsg() {
+                    alert('Hello Vue')
+                }
+            },
+            components: {
+                cpn: {
+                    template: '#cpn',
+                    components: {
+                        cpns: {
+                            template: '#cpns',
+                            methods: {
+                                btnEvent() {
+                                    this.$root.showMsg();
+                                }
+                            },
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-作用域插槽-v-slot</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <span>插槽默认值，子组件内数据的显示样式：</span>
+        <cpn></cpn>
+        <hr>
+        <span>修改插槽后，子组件内数据的显示样式：</span>
+        <!-- 作用域插槽通过v-slot指令 -->
+        <!-- 在父级作用域中，使用带值的 v-slot 来定义提供的插槽 prop 的名字 -->
+        <!-- slotProps这个name可以自由设置 -->
+        <!-- 紧跟slotProps其后的name必须是子组件定义插槽时绑定的插槽prop -->
+        <cpn>
+            <template v-cloak v-slot:default="slot">
+                {{slot.fruits.join('    ')}}
+            </template>
+        </cpn>
+
+    </div>
+    <template id="cpn">
+        <div>
+            <!-- 给slot设置一个绑定，将其跟子组件里的数据带有绑定 -->
+            <!-- 绑定在 <slot> 元素上的 attribute 被称为插槽 prop -->
+            <slot v-bind:fruits="fruits">
+                <ul>
+                    <li v-cloak v-for="item in fruits">{{item}}</li>
+                </ul>
+            </slot>
+        </div>
+    </template>
+    <script src="../JS/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+
+            },
+            components: {
+                cpn: {
+                    template: '#cpn',
+                    data() {
+                        return {
+                            fruits: ['Pineapple', 'Apple', 'Orange', 'Pear', 'Banana', 'Grape']
+                        }
+                    },
+                    methods: {
+
+                    },
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
