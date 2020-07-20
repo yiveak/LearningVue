@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getFullName</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-cloak :key="item.id" v-for="(item) in persons">{{item | fullName}}</li>
+        </ul>
+        <p v-cloak :key="item.id" v-for="item in presons">女性的平均身高为：{{| aveHeight}}</p>
+        <!-- <p>男性的平均身高为：{{}}</p> -->
+    </div>
+
+    <script src="../JS/vue.js"></script>
+    <script>
+        /* 
+        需求：给定一个数组，该数组包含了firstname和lastname，将其在页面上以列表的形式输出
+        分别求女性、男性的平均身高
+         */
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+                persons: [{
+                        id: 1,
+                        firstname: 'John',
+                        lastname: 'English',
+                        age: 35,
+                        sex: 'Male',
+                        height: 179,
+                        job: 'Agent'
+                    },
+                    {
+                        id: 2,
+                        firstname: 'Eve',
+                        lastname: 'Smith',
+                        age: 24,
+                        sex: 'Female',
+                        height: 169,
+                        job: 'Doctor'
+                    },
+                    {
+                        id: 3,
+                        firstname: 'Tim',
+                        lastname: 'Reynolds',
+                        age: 30,
+                        sex: 'Male',
+                        height: 183,
+                        job: 'Programmer'
+                    },
+                    {
+                        id: 4,
+                        firstname: 'Zoe',
+                        lastname: 'Cobb',
+                        age: 36,
+                        sex: 'Female',
+                        height: 172,
+                        job: 'Artist'
+                    }
+                ]
+            },
+            filters: {
+                fullName(item) {
+                    // return item.firstname + ' ' + item.lastname;
+                    return [item.firstname, item.lastname].join(' ');
+                },
+                aveHeight(item) {
+                    let count = 0;
+                    let result = 0;
+                    if (item.sex === 'Female') {
+                        count++;
+                        result += item.height;
+                        console.log(count, result);
+                    }
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
